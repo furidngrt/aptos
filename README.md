@@ -147,7 +147,23 @@ cp docker/compose/aptos-node/fullnode.yaml ~/$WORKSPACE/fullnode.yaml
 nano /root/testnet/validator.yaml
 ```
 sekarang ganti folder dimana kalian menyimpan file `key`, `genesis file`, `waypoint`
+![Screenshot_33](https://user-images.githubusercontent.com/63885192/177060340-7de70ba9-a995-40ef-8984-575000156e0e.png)
 
 ```
 /root/testnet/
 ```
+**Setelah selesai Lanjut buat screen session dengan nama bebas contoh** `aptos-core`
+```
+screen -S aptos-core
+```
+```
+cargo run -p aptos-node --release -- -f ~/testnet/validator.yaml
+```
+kalau muncul Logs artinya node sudah berjalan, close tekan Ctrl+A then D close putty
+
+Chcek IP VPS kalian disini https://aptos-node.info/
+![Screenshot_34](https://user-images.githubusercontent.com/63885192/177060451-f35eb797-8d54-4291-a9be-b7e9158cee3d.png)
+jika sudah seperti di screenshoot atas silahkan daftarkan node kalian disini https://community.aptoslabs.com/
+
+Terimakasih.
+
