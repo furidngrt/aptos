@@ -1,7 +1,7 @@
 # Tutorial Run Aptos Testnet
 Tutorial simpel RUN Testnet Aptos di baca baik-baik biar gak ada error. 
 
-# Update packages
+## Update packages
 
 ```
 sudo apt update && sudo apt upgrade -y
@@ -9,34 +9,34 @@ sudo apt update && sudo apt upgrade -y
 ```
 sudo apt-get install jq unzip -y
 ```
-# Install screen
+## Install screen
 ```
 sudo apt install screen
 ```
-# install git
+## install git
 ```
 apt install git
 ```
-# Install cargo
+## Install cargo
 ```
 apt install cargo
 ```
-# Download Aptos Core
+## Download Aptos Core
 ```
 git clone https://github.com/aptos-labs/aptos-core.git
 ```
-# Masuk ke folder
+## Masuk ke folder
 ```
 cd aptos-core
 ```
-# Lalu install
+## Lalu install
 ```
 ./scripts/dev_setup.sh
 ```
 ```
 source ~/.cargo/env
 ```
-# Setup validator
+## Setup validator
 ```
 git checkout --track origin/testnet
 ```
@@ -44,7 +44,7 @@ git checkout --track origin/testnet
 export WORKSPACE=testnet
 mkdir ~/$WORKSPACE
 ```
-# Generate key pairs
+## Generate key pairs
 ```
 cargo run --release -p aptos -- genesis generate-keys --output-dir ~/$WORKSPACE
 ```
@@ -59,7 +59,7 @@ nano /root/testnet/validator-identity.yaml
 ```
 nano /root/testnet/validator-full-node-identity.yaml
 ```
-# Konfigurasi validator
+## Konfigurasi validator
 ```
 cargo run --release -p aptos -- genesis set-validator-configuration \
     --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
@@ -76,7 +76,7 @@ cargo run --release -p aptos -- genesis set-validator-configuration \
     --validator-host 35.232.235.205:6180 \
     --full-node-host 34.135.169.144:6182
 ```
-# buat yaml file dengan username kalian
+## buat yaml file dengan username kalian
 ```
 sudo nano /root/testnet/usernamekalian.yaml
 ```
@@ -84,7 +84,7 @@ sudo nano /root/testnet/usernamekalian.yaml
 ```
 nano ~/$WORKSPACE/layout.yaml
 ```
-# Paste ini di dalam file `layout.yaml`
+## Paste ini di dalam file `layout.yaml`
 ```
 ---
 root_key: "F22409A93D1CD12D2FC92B5F8EB84CDCD24C348E32B3E7A720F3D2E288E63394"
@@ -100,7 +100,7 @@ initial_lockup_timestamp: 1656615600
 min_price_per_gas_unit: 1
 allow_new_validators: true
 ```
-# ganti `xxxxxx` dengan nama node/username kalian
+## ganti `xxxxxx` dengan nama node/username kalian
 contoh di bawah
 ```
 ---
@@ -117,7 +117,7 @@ initial_lockup_timestamp: 1656615600
 min_price_per_gas_unit: 1
 allow_new_validators: true
 ```
-# Selanjutnya copy paste perintah di bawah satu-satu
+## Selanjutnya copy paste perintah di bawah satu-satu
 ```
 cargo run --release --package framework -- --package aptos-framework --output current
 mkdir ~/$WORKSPACE/framework
@@ -129,11 +129,11 @@ mv aptos-framework/releases/artifacts/current/build/**/bytecode_modules/*.mv ~/$
 mv aptos-framework/releases/artifacts/current/build/**/bytecode_modules/dependencies/**/*.mv ~/$WORKSPACE/framework/
 ```
 
-# Kompilasi genesis blob dan waypoint dengan perintah ini
+## Kompilasi genesis blob dan waypoint dengan perintah ini
 ```
 cargo run --release -p aptos -- genesis generate-genesis --local-repository-dir ~/$WORKSPACE --output-dir ~/$WORKSPACE
 ```
-# Ini akan membuat dua file, `genesis.blob` dan `waypoint.txt` di direktori kalian.
+## Ini akan membuat dua file, `genesis.blob` dan `waypoint.txt` di direktori kalian.
 
 Dan sekarang salin file validator.yaml, fullnode.yaml ke direktori ini dengan perintah di bawah:
 ```
@@ -141,7 +141,7 @@ mkdir ~/$WORKSPACE/config
 cp docker/compose/aptos-node/validator.yaml ~/$WORKSPACE/validator.yaml
 cp docker/compose/aptos-node/fullnode.yaml ~/$WORKSPACE/fullnode.yaml
 ```
-# buka file config kalian
+## buka file config kalian
 ```
 nano /root/testnet/validator.yaml
 ```
@@ -151,7 +151,7 @@ sekarang ganti folder dimana kalian menyimpan file `key`, `genesis file`, `waypo
 ```
 /root/testnet/
 ```
-# Setelah selesai Lanjut buat screen session dengan nama bebas contoh `aptos-core`
+## Setelah selesai Lanjut buat screen session dengan nama bebas contoh `aptos-core`
 ```
 screen -S aptos-core
 ```
